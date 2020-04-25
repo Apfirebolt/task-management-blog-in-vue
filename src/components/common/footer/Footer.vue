@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid">
-        <h1 class="text-danger">Footer Component</h1>
+        <h1 class="text-white text-center m-2">TechBlogs - Writing Technical Blogs</h1>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, eius fuga laudantium officiis placeat repellat vitae voluptate.
                     Blanditiis fugit laudantium repellendus. Deleniti error optio vero! Accusamus adipisci atque dicta, eius
@@ -10,7 +10,16 @@
                     optio provident quae quaerat, sunt voluptatum.
                 </p>
             </div>
-            <div class="col-md-8">
+
+            <div class="col-md-3">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, eius fuga laudantium officiis placeat repellat vitae voluptate.
+                    Blanditiis fugit laudantium repellendus. Deleniti error optio vero! Accusamus adipisci atque dicta, eius
+                    laboriosam optio quae ullam veritatis. Architecto aut est fugiat impedit labore molestias, nihil nisi,
+                    optio provident quae quaerat, sunt voluptatum.
+                </p>
+            </div>
+            <div class="col-md-6">
                 <form action="#">
                     <div class="form-group">
                         <label for="email">Enter Your Email</label>
@@ -41,6 +50,12 @@
 .container-fluid {
     background-color: slategray;
     padding: 1rem;
+    font-family: $lato;
+    color: #DDE2C2;
+
+    p {
+        color: #DDE2C2;
+    }
 }
 
 </style>
