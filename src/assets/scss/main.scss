@@ -1,0 +1,19 @@
+/* Font imports */
+
+@import url('https://fonts.googleapis.com/css?family=Lato|Nunito+Sans|Open+Sans|Roboto&display=swap');
+
+
+/* Global variables defined */
+
+$primaryColor: #24177D;
+$secondaryColor: #49BBB5;
+$roboto: 'Roboto', 'sans-serif';
+$openSans: 'Open Sans', 'sans-serif';
+$lato: 'Lato', 'sans-serif';
+$nunitoSans: 'Nunito Sans', 'sans-serif';
+
+
+p {
+  color: $secondaryColor;
+  font-family: $nunitoSans;
+}
