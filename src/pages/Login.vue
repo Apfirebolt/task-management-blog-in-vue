@@ -29,6 +29,9 @@
 
 <script>
   import { validations } from '../shared/validations';
+  import { ENV } from '../shared/constants';
+  import { mapActions } from 'vuex';
+  import * as accountTypes from '../store/modules/accounts/AccountTypes';
   export default {
     name: 'login_page',
     props: {
@@ -42,6 +45,9 @@
       }
     },
     methods: {
+      ...mapActions({
+        loginUser: accountTypes.LOGIN_USER
+      }),
       loginFunction() {
         this.errors = [];
         if(this.email && !validations.validateEmail(this.email))
@@ -58,6 +64,11 @@
         if(!this.password) {
           this.errors.push('Password field cannot be left blank.');
         }
+        let payload = {
+          email: this.email,
+          password: this.password
+        };
+        this.loginUser(payload);
       }
     }
   }

@@ -37,6 +37,10 @@
 
 <script>
   import { validations } from '../shared/validations';
+  import { mapActions } from 'vuex';
+  import * as accountTypes from '../store/modules/accounts/AccountTypes';
+  import { ENV } from '../shared/constants';
+
   export default {
     name: 'register_page',
     props: {
@@ -51,8 +55,11 @@
       }
     },
     methods: {
+      ...mapActions({
+        registerUser: accountTypes.REGISTER_USER
+      }),
       registerFunction() {
-        console.log('Register function called..');
+        this.errors = [];
         if(this.email && !validations.validateEmail(this.email))
         {
           this.errors.push('Email is not in valid format.');
@@ -67,6 +74,13 @@
         if(!this.password) {
           this.errors.push('Password field cannot be left blank.');
         }
+        // Save the data if no validation error
+        let payload = {
+          email: this.email,
+          password: this.password,
+          username: this.username
+        };
+        this.registerUser(payload);
       }
     }
   }

@@ -6,12 +6,9 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul v-if="loadToken" class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <router-link to="/register" class="nav-link-custom" href="#">Register</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/login" class="nav-link-custom" href="#">Login</router-link>
+                    <button class="nav-link-custom" @click="logOut()">Logout</button>
                 </li>
                 <li class="nav-item active">
                     <router-link to="/dashboard" class="nav-link" href="#">Dashboard</router-link>
@@ -34,7 +31,16 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+
+            <ul class="navbar-nav mr-auto" v-else>
+                <li class="nav-item">
+                    <router-link to="/register" class="nav-link-custom" href="#">Register</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/login" class="nav-link-custom" href="#">Login</router-link>
+                </li>
+            </ul>
+            <form v-if="loadToken" class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
@@ -43,8 +49,40 @@
 </template>
 
 <script>
+  import * as accountTypes from '../../../store/modules/accounts/AccountTypes';
+  import { mapGetters, mapActions, mapMutations } from 'vuex';
   export default {
     name: 'header_component',
+    data() {
+        return {
+
+        }
+    },
+    computed: {
+      ...mapGetters({
+        loadToken: accountTypes.GET_TOKEN,
+      }),
+    },
+    methods: {
+      ...mapMutations({
+        setToken: accountTypes.SET_TOKEN,
+      }),
+      ...mapActions({
+        logOut: accountTypes.LOG_OUT,
+      }),
+    },
+    watch: {
+      loadToken: function() {
+        console.log('Token changed just now..');
+      }
+    },
+    created() {
+      if(!this.loadToken) {
+        let storedToken = localStorage.getItem('token');
+        if(storedToken)
+          this.setToken(storedToken);
+      }
+    }
   }
 </script>
 
